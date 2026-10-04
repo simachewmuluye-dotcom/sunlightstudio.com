@@ -1,0 +1,572 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sunlight Studio | Creative Digital Studio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0b;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd000;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd000;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            background:
+                radial-gradient(circle at center, rgba(255,208,0,0.15), transparent 40%),
+                #0b0b0b;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease;
+        }
+
+        .hero-logo {
+            width: 120px;
+            margin-bottom: 25px;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 85px);
+            line-height: 1;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #fff, #ffd000, #fff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            color: #cccccc;
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 32px;
+            margin: 8px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #ffd000;
+            color: #111;
+        }
+
+        .primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,208,0,0.3);
+        }
+
+        .secondary {
+            border: 1px solid #ffd000;
+            color: #ffd000;
+        }
+
+        .secondary:hover {
+            background: #ffd000;
+            color: #111;
+        }
+
+        /* SERVICES */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: #ffd000;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 50px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #151515;
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid #252525;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd000;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+            color: #ffd000;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 18px;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.04);
+            filter: brightness(1.2);
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            background: #151515;
+            padding: 45px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid #252525;
+        }
+
+        .contact-box p {
+            color: #aaa;
+            margin: 15px 0;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: #050505;
+            color: #888;
+            border-top: 1px solid #222;
+        }
+
+        footer span {
+            color: #ffd000;
+        }
+
+        /* BACK TO TOP */
+        #topBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #ffd000;
+            color: #111;
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .hero {
+                min-height: 85vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <div class="logo">
+            <img src="logo.png" alt="Sunlight Studio">
+            Sunlight Studio
+        </div>
+
+        <div class="links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#designs">Designs</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <img class="hero-logo" src="logo.png" alt="Sunlight Studio Logo">
+
+            <h1>Sunlight Studio</h1>
+
+            <p>
+                We are Sunlight Studio — professional website developers,
+                business card designers, and AI advertisement video creators.
+                We turn creative ideas into powerful digital experiences.
+            </p>
+
+            <div class="buttons">
+
+                <a class="btn primary" href="#services">
+                    Explore Services
+                </a>
+
+                <a class="btn secondary" href="#contact">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services">
+
+        <h2 class="section-title">
+            Our <span>Services</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Creative digital solutions for businesses and brands.
+        </p>
+
+        <div class="services">
+
+            <div class="card">
+                <div class="card-icon"><div class="card-icon">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 18 22 12 16 6"></polyline>
+    <polyline points="8 6 2 12 8 18"></polyline>
+  </svg>
+</div></div>
+                <h3>Website Development</h3>
+                <p>
+                    Modern, responsive and professional websites
+                    for businesses, organizations and personal brands.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><div class="card-icon">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+    <circle cx="8" cy="11" r="2"></circle>
+    <path d="M6 16c0-1.5 1.5-2 2-2s2 .5 2 2"></path>
+    <line x1="13" y1="10" x2="18" y2="10"></line>
+    <line x1="13" y1="14" x2="17" y2="14"></line>
+  </svg>
+</div></div>
+                <h3>Business Card Design</h3>
+                <p>
+                    Professional business card designs that
+                    make your brand look unique and memorable.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><div class="card-icon">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+  </svg>
+</div></div>
+                <h3>AI Advertisement Videos</h3>
+                <p>
+                    Short creative AI-powered advertisement videos
+                    designed to promote your business.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DESIGNS -->
+    <section id="designs">
+
+        <h2 class="section-title">
+            Best <span>Creative Designs</span>
+        </h2>
+
+        <p class="section-subtitle">
+            Some of our creative work.
+        </p>
+
+        <div class="gallery">
+
+            <img src="Image01.jpg" alt="image01">
+            <img src="Image02.jpg" alt="image02">
+            <img src="Image03.jpg" alt="image03">
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="about">
+
+            <h2 class="section-title">
+                About <span>Sunlight Studio</span>
+            </h2>
+
+            <p>
+                Sunlight Studio is a creative digital studio focused on
+                website development, professional business card design,
+                and AI-powered advertisement videos.
+                Our goal is to help businesses build a strong digital presence
+                with modern and creative solutions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <h2 class="section-title">
+            Let's <span>Work Together</span>
+        </h2>
+
+        <div class="contact-box">
+
+            <h3>Sunlight Studio</h3>
+
+            <p>
+                Have a project or business idea?
+                Let's make it real.
+            </p>
+
+            <a class="btn primary"
+               href="https://t.me/Sunlight_studio7"
+               target="_blank">
+                Contact on Telegram
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 <span>Sunlight Studio</span>.
+        All Rights Reserved.
+
+    </footer>
+
+
+    <!-- BACK TO TOP -->
+    <button id="topBtn" onclick="goTop()">&#8593;</button>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // Show back-to-top button
+        window.addEventListener("scroll", function() {
+
+            const button = document.getElementById("topBtn");
+
+            if (window.scrollY > 400) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+
+        });
+
+
+        // Scroll to top
+        function goTop() {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // Simple welcome message
+        window.addEventListener("load", function() {
+
+            console.log(
+                "Welcome to Sunlight Studio!"
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
